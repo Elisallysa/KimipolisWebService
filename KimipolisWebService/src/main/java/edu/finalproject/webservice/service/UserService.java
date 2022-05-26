@@ -3,6 +3,7 @@ package edu.finalproject.webservice.service;
 import edu.finalproject.webservice.model.connector.MySQLConnector;
 import edu.finalproject.webservice.model.dao.User;
 import edu.finalproject.webservice.model.manager.UserManager;
+import edu.finalproject.webservice.model.manager.impl.UserManagerImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;

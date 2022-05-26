@@ -39,7 +39,7 @@ public class UserManagerImpl implements UserManager {
     @Override
     public int registerUser(Connection con, User user) {
         //prepare SQL statement
-        String sql = "INSERT INTO users (id, username, password, mail) values(?,?,?,?)";
+        String sql = "INSERT INTO users (id, username, password) values(?,?,?)";
 
         // Create general statement
         try (PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -47,7 +47,6 @@ public class UserManagerImpl implements UserManager {
             stmt.setInt(1, user.getId());
             stmt.setString(2, user.getUser());
             stmt.setString(3, user.getPass());
-            stmt.setString(4, user.getMail());
             // Queries the DB
             int affectedRows = stmt.executeUpdate();
 
@@ -132,14 +131,13 @@ public class UserManagerImpl implements UserManager {
     @Override
     public boolean updateUser(Connection con, User user) {
         //prepare SQL statement
-        String sql = "UPDATE users SET username=?, password=?, mail=? WHERE id = ?";
+        String sql = "UPDATE users SET username=?, password=? WHERE id = ?";
 
         // Create general statement
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             //Add Parameters
             stmt.setString(1, user.getUser());
             stmt.setString(2, user.getPass());
-            stmt.setString(3, user.getMail());
             // Queries the DB
             return stmt.executeUpdate() > 0;
 
