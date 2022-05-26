@@ -38,7 +38,7 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
+    @Path("/get/{id}")
     public Response findById(@PathParam("id") Integer id) {
         try {
             if (id == null) {
@@ -48,6 +48,18 @@ public class UserController {
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
+        }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/get/{username}/{password}")
+    public Boolean loginUser(@PathParam("username") String username, @PathParam("password") String password) {
+        try {
+            return userService.findByUsernameAndPassword(username, password);
+        } catch (SQLException | ClassNotFoundException e) {
+            Response.status(500).entity("Internal Error During DB Interaction").build();
+            return false;
         }
     }
 
