@@ -1,5 +1,8 @@
 package edu.finalproject.webservice.model.connector;
 
+/**
+ * Class with MySQl Constants.
+ */
 public class MySQLConstant {
     public static final String PASSWD = "jdbc.mysql.passwd";
     public static final String USER = "jdbc.mysql.user";

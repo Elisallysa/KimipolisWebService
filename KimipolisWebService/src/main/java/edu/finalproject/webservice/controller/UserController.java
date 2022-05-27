@@ -15,6 +15,9 @@ import jakarta.ws.rs.core.Response;
 
 import java.sql.SQLException;
 
+/**
+ * Class that represents the Controler of the User class.
+ */
 @Path("/user")
 public class UserController {
 

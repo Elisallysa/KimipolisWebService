@@ -18,7 +18,7 @@ public class UserClient {
 
     public Boolean getLogin(User user) {
 
-        return webTarget.path("user/get/"+user.getUser()+"/"+user.getPass())
+        return webTarget.path("user/get/"+user.getUsername()+"/"+user.getPassword())
                 .request(MediaType.APPLICATION_JSON)
                 .get(Boolean.class);
     }

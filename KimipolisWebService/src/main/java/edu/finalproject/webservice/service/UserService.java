@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Service of the User class.
+ */
 public class UserService {
 
     private final UserManager userManager;

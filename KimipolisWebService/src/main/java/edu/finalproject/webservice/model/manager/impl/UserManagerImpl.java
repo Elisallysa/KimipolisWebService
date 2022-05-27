@@ -7,6 +7,9 @@ import edu.finalproject.webservice.model.manager.UserManager;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Class containing methods of a UserManager Implementations which implements the UserMaganer interface.
+ */
 public class UserManagerImpl implements UserManager {
     @Override
     public boolean findUser(Connection con, String name, String pass) {
@@ -39,14 +42,13 @@ public class UserManagerImpl implements UserManager {
     @Override
     public int registerUser(Connection con, User user) {
         //prepare SQL statement
-        String sql = "INSERT INTO users (id, username, password) values(?,?,?)";
+        String sql = "INSERT INTO users (username, password) values(?,?)";
 
         // Create general statement
         try (PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             //Add Parameters
-            stmt.setInt(1, user.getId());
-            stmt.setString(2, user.getUser());
-            stmt.setString(3, user.getPass());
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
             // Queries the DB
             int affectedRows = stmt.executeUpdate();
 
@@ -116,6 +118,7 @@ public class UserManagerImpl implements UserManager {
             ResultSet result = stmt.executeQuery();
             // Set before first registry before going through it.
             result.beforeFirst();
+            result.next();
 
             // Initialize variable
             User user = new User(result);
@@ -136,8 +139,8 @@ public class UserManagerImpl implements UserManager {
         // Create general statement
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             //Add Parameters
-            stmt.setString(1, user.getUser());
-            stmt.setString(2, user.getPass());
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
             // Queries the DB
             return stmt.executeUpdate() > 0;
 
